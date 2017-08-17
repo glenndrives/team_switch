@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 # (C) Copyright 2017 Glenn Hickman <glennh@gjjtjc.com>
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -11,21 +14,23 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import sys
 import serial
-import pandas as pd
+import RPi.GPIO as GPIO  # Import Python GPIO module
 
-team = serial.Serial("/dev/ttyUSB0", 38400, timeout=1)
-vlc = serial.Serial("/dev/ttyUSB1", 9600, timeout=1)
+GPIO.setmode(GPIO.BCM)  # Set board mode to Broadcom
+
+team = serial.Serial("/dev/ttyUSB0", 38400, timeout=1)  # Start serial port for TEAM unit
+vcl = serial.Serial("/dev/ttyUSB1", 9600, timeout=1)  # Start serial port for VCL
 
 vclPort01Main = ""
 vclPort01Standby = ""
-vlcPort01Eqpmt = ""
+vclPort01Eqpmt = ""
 teamN05 = ""
 teamN06 = ""
+
+# Borrowed function to parse serial data from TEAM and VCL
+# https://stackoverflow.com/questions/4914008/how-to-efficiently-parse-fixed-width-files
 
 def slices(s, *args):
     position = 0
@@ -33,33 +38,39 @@ def slices(s, *args):
         yield s[position:position + length]
         position += length
 
-vlc.write('alarms_sum?\n')
+vcl.write('alarms_sum?\n')  # Get alarms from VCL
+
+# Loop through VLC response and get alarm conditions
 
 while True:
-    c = vlc.readline()
+    c = vcl.readline()
     if len(c) ==0:
         break
     if "01Main" in c:
-        vclPort01Main = list(slices(c, 3, 7, 9, 8))[3]
+        vclPort01Main = list(slices(c, 3, 7, 9, 8))[3]  # captures only the alarm condition
     if "01Standby" in c:
-        vclPort01Standby = list(slices(c, 3, 7, 9, 8))[3]
+        vclPort01Standby = list(slices(c, 3, 7, 9, 8))[3]  # captures only the alarm condition
     if "01Eqpmt" in c:
-        vclPort01Eqpmt = list(slices(c, 3, 7, 9, 8))[3]
+        vclPort01Eqpmt = list(slices(c, 3, 7, 9, 8))[3]  # captures only the alarm condition
 
-team.write('cst 1\n')
+team.write('cst 1\n')  # Get alarms from TEAM
+
+# Loop through TEAM response and get alarm conditions
 
 while True:
     c = team.readline()
     if len(c) == 0:
         break
     if "N05" in c:
-        teamN05 = (list(slices(c, 1, 33, 3, 4, 4, 5, 10, 4, 10))[6])
+        teamN05 = (list(slices(c, 1, 33, 3, 4, 4, 5, 10, 4, 10))[6])  # captures only the alarm condition
     if "N06" in c:
-        teamN06 = (list(slices(c, 1, 33, 3, 4, 4, 5, 10, 4, 10))[6])
+        teamN06 = (list(slices(c, 1, 33, 3, 4, 4, 5, 10, 4, 10))[6])  # captures only the alarm condition
 
-print(vclPort01Main)
-print(vclPort01Standby)
-print(vclPort01Eqpmt)
+# Print out alarm responses for troubleshooting
 
-print(teamN05)
-print(teamN06)
+print("VCL Port 01 Main = " + str(vclPort01Main))
+print("VCL Port 01 Standby = " + str(vclPort01Standby))
+print("VCL Port 01 Equipment = " + str(vclPort01Eqpmt))
+
+print("Team N05 Loss of Sync = " + str(teamN05))
+print("Team N06 Loss of Signal = " + str(teamN06))
