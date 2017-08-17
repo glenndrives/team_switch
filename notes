@@ -1,15 +1,1 @@
-****
-## Team response to cst 1:
 
->Event Status:
->           EVENT                  #    ACTION    R.T. STATE   LATCHED STATE
-> -----------------------------  -----  -------  -----------   -------------
-> T1 Mux Missing                  N01    NONE     NOT ACTIVE    NOT ACTIVE
-> T1 Mux Init Failure             N02    NONE     NOT ACTIVE    NOT ACTIVE
-> T1 Loss of Sync                 N05    NONE     NOT ACTIVE    ACTIVE
-> T1 Loss of Signal               N06    NONE     NOT ACTIVE    ACTIVE
-> T1 AIS On                       N11    NONE     NOT ACTIVE    NOT ACTIVE
-> T1 Loss of Frame Alignment      N19    NONE     NOT ACTIVE    ACTIVE
-> T1-D Loss of Signal             N20    NONE     ACTIVE        ACTIVE
-> T1-D AIS On                     N21    NONE     NOT ACTIVE    ACTIVE
-> T1-D Loss of Frame Alignment    N22    NONE     ACTIVE        ACTIVE
