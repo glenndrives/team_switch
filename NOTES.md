@@ -38,5 +38,7 @@ Event Status:
 
 +   the asterisks for ALARM_ON are truncated off
 
+## 99-usb-serial.rules
+
 >Had to add /etc/udev/rules.d/99-usb-serial.rules to get around serial adapters changing /dev/ file naming 
 >at boot time. 
