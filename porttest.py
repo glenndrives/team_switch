@@ -20,8 +20,11 @@ import RPi.GPIO as GPIO  # Import Python GPIO module
 
 GPIO.setmode(GPIO.BCM)  # Set board mode to Broadcom
 
-team = serial.Serial("/dev/ttyUSB0", 38400, timeout=1)  # Start serial port for TEAM unit
-vcl = serial.Serial("/dev/ttyUSB1", 9600, timeout=1)  # Start serial port for VCL
+# We have to determine which serial port has which device as the USB adapters can
+# change device files.
+
+team = serial.Serial("/dev/mttyUSB0", 38400, timeout=1)  # Start serial port for TEAM unit
+vcl = serial.Serial("/dev/mttyUSB1", 9600, timeout=1)  # Start serial port for VCL
 
 vclPort01Main = ""
 vclPort01Standby = ""
