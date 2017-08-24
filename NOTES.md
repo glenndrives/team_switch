@@ -42,3 +42,12 @@ Event Status:
 
 >Had to add /etc/udev/rules.d/99-usb-serial.rules to get around serial adapters changing /dev/ file naming 
 >at boot time. 
+
+## VCL alarm Contact
+>Screw terminals on the back. Use NO
+
+## Team Alarm Relays
+>Alarm Relay A common Pin 9
+>Alarm Relay A NO Pin 22
+>Alarm Relay B common Pin 23
+>Alarm Relay B NO Pin 11
