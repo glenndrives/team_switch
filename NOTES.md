@@ -56,5 +56,6 @@ Event Status:
 >Alarm Relay B NO Pin 11
 
 > T1 Loss of Sync on relay A
+>
 > T1 Loss of Signal on relay B
 
