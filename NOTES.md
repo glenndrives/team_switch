@@ -47,15 +47,18 @@ Event Status:
 >Screw terminals on the back. Use NO
 
 ## Team Alarm Relays
+> T1 Loss of Sync on relay A
+>
 >Alarm Relay A common Pin 9
 >
 >Alarm Relay A NO Pin 22
+
+> T1 Loss of Signal on relay B
 >
 >Alarm Relay B common Pin 23
 >
 >Alarm Relay B NO Pin 11
 
-> T1 Loss of Sync on relay A
->
-> T1 Loss of Signal on relay B
+
+
 
