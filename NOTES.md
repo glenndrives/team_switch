@@ -59,6 +59,13 @@ Event Status:
 >
 >Alarm Relay B NO Pin 11
 
+## Python Pull up-down
+>You enable these internal pull-ups/pull-downs at the time of setting up the port for input or output, by adding an extra, optional, argument to the GPIO.setup() function call.
+>
+>We’re using pull-down, so it’s pull_up_down=GPIO.PUD_DOWN. If you want/need pull-up you can change the PUD_DOWN for PUD_UP. (It depends on how you’ve wired your circuit.)
+>
+>GPIO.setup(port_or_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
 
 
 
