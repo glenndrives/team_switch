@@ -48,11 +48,11 @@ Event Status:
 
 ## Team Alarm Relays
 >Alarm Relay A common Pin 9
-
+>
 >Alarm Relay A NO Pin 22
-
+>
 >Alarm Relay B common Pin 23
-
+>
 >Alarm Relay B NO Pin 11
 
 > T1 Loss of Sync on relay A
