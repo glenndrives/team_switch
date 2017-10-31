@@ -44,20 +44,20 @@ Event Status:
 >at boot time. 
 
 ## VCL alarm Contact
->Screw terminals on the back. Use NO
+>| Screw terminals on the back. Use NO | NO Pi Pin 36 (GPIO 16) | COM Pi Pin 30 (Ground) |
 
 ## Team Alarm Relays
 > T1 Loss of Sync on relay A
 >
->Alarm Relay A common Pin 9
+>| Alarm Relay A common Pin 9 | Pi Pin 34 (Ground)|
 >
->Alarm Relay A NO Pin 22
+>| Alarm Relay A NO Pin 22 | Pi Pin 38 (GPIO 20) |
 
 > T1 Loss of Signal on relay B
 >
->Alarm Relay B common Pin 23
+>| Alarm Relay B common Pin 23 | Pi Pin 39 (Ground) |
 >
->Alarm Relay B NO Pin 11
+>| Alarm Relay B NO Pin 11 | Pi Pin 40 (GPIO 21) |
 
 ## Python Pull up-down
 >You enable these internal pull-ups/pull-downs at the time of setting up the port for input or output, by adding an extra, optional, argument to the GPIO.setup() function call.
