@@ -37,3 +37,35 @@ Event Status:
 | 3 |   7   |    9    |    8   |
 
 +   the asterisks for ALARM_ON are truncated off
+
+## 99-usb-serial.rules
+
+>Had to add /etc/udev/rules.d/99-usb-serial.rules to get around serial adapters changing /dev/ file naming 
+>at boot time. 
+
+## VCL alarm Contact
+>| Screw terminals on the back. Use NO | NO Pi Pin 36 (GPIO 16) | COM Pi Pin 30 (Ground) |
+
+## Team Alarm Relays
+> T1 Loss of Sync on relay A
+>
+>| Alarm Relay A common Pin 9 | Pi Pin 34 (Ground)|
+>
+>| Alarm Relay A NO Pin 22 | Pi Pin 38 (GPIO 20) |
+
+> T1 Loss of Signal on relay B
+>
+>| Alarm Relay B common Pin 23 | Pi Pin 39 (Ground) |
+>
+>| Alarm Relay B NO Pin 11 | Pi Pin 40 (GPIO 21) |
+
+## Python Pull up-down
+>You enable these internal pull-ups/pull-downs at the time of setting up the port for input or output, by adding an extra, optional, argument to the GPIO.setup() function call.
+>
+>We’re using pull-down, so it’s pull_up_down=GPIO.PUD_DOWN. If you want/need pull-up you can change the PUD_DOWN for PUD_UP. (It depends on how you’ve wired your circuit.)
+>
+>GPIO.setup(port_or_pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+
+
+
