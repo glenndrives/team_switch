@@ -17,28 +17,16 @@
 # License along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-
+# built in modules
 import sys
 import serial  # Import Python Serial module
+from time import sleep
+
+# RPi specific modules
 import RPi.GPIO as GPIO  # Import Python GPIO module
 
-# import sendemail  # function to send an email
-
-# Import smtplib for sending emails
-import smtplib
-
-# import the email module we need
-from email.mime.text import MIMEText
-
-def sendemail(msg_body, email_from, email_to):
-    msg_body = MIMEText(msg_body)
-    msg_body['Subject'] = 'Message from Team Switch'
-    msg_body['From'] = email_from
-    msg_body['To'] = email_to
-    print(msg_body)
-    server = smtplib.SMTP('webmail.whro.org', 25)
-    server.send_message(msg_body)
-    server.quit()
+# Our modules
+import sendemail  # function to send an email sendemail.sendemail("msg", "from", "to")
 
 #The next two lines set up the relay board for use
 from mcp23008 import mcp23008  # Import the MCP23008 library from ncd.io (https://github.com/ncd-io/MCP23008) to control the relays
@@ -122,5 +110,5 @@ msg += "Relay Board Status\n\n"
 msg += "GPIO Status = " + str(mcp23008.get_all_gpio_status())
 print(msg)
 
-sendemail(msg, "glennh@whro.org", "glennh@whro.org")
+sendemail.sendemail(msg, "teamswitch@whro.org", "glennh@whro.org")
 
